@@ -187,9 +187,13 @@
     fillCardStars(repos);
 
     var hint = $('#reposHint');
-    if (hint && meta && meta.generatedAt) {
-      var t = new Date(meta.generatedAt);
-      hint.textContent = '数据更新于 ' + t.toLocaleString('zh-CN', { hour12: false });
+    if (hint && meta) {
+      if (meta.live) {
+        hint.textContent = '实时数据 · ' + new Date().toLocaleString('zh-CN', { hour12: false });
+      } else if (meta.generatedAt) {
+        hint.textContent = '静态快照 · 更新于 ' +
+          new Date(meta.generatedAt).toLocaleString('zh-CN', { hour12: false });
+      }
     }
   }
 
@@ -280,9 +284,32 @@
     });
   }
 
-  /* -------------------------------------------------------- 数据加载（降级链） */
+  /* -------------------------------------------------------- 数据加载（降级链）
+     1) GitHub API      —— 实时数据（sessionStorage 缓存 10 分钟，减少重复请求）
+     2) data/stats.json —— 手动生成的静态快照
+     3) HTML 内嵌值      —— 最后兜底，保证页面永远不是空的
+  */
+  var CACHE_KEY = 'ph4nt0mer:gh-cache';
+  var CACHE_TTL = 10 * 60 * 1000;
+
+  function readApiCache() {
+    try {
+      var raw = sessionStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      var parsed = JSON.parse(raw);
+      if (!parsed || !parsed.at || Date.now() - parsed.at > CACHE_TTL) return null;
+      return parsed.data;
+    } catch (e) { return null; }
+  }
+
+  function writeApiCache(data) {
+    try {
+      sessionStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), data: data }));
+    } catch (e) { /* 隐私模式 */ }
+  }
+
   function loadSnapshot() {
-    // 同源静态文件：不受 GitHub API 限额影响，永远可用
+    // 同源静态文件：不受 GitHub API 限额影响
     return fetch(STATS_FILE, { cache: 'no-cache' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .catch(function () { return null; });
@@ -290,6 +317,9 @@
 
   function loadLive() {
     var headers = { Accept: 'application/vnd.github+json' };
+    var cached = readApiCache();
+    if (cached) return Promise.resolve(cached);
+
     return fetch(API + '/users/' + USERNAME, { headers: headers })
       .then(function (r) { return r.ok ? r.json() : null; })
       .catch(function () { return null; })
@@ -299,29 +329,17 @@
         return fetch(API + '/users/' + USERNAME + '/repos?per_page=100&sort=updated', { headers: headers })
           .then(function (r) { return r.ok ? r.json() : []; })
           .catch(function () { return []; })
-          .then(function (repos) { return { profile: profile, repos: repos }; });
+          .then(function (repos) {
+            var data = { profile: profile, repos: repos };
+            writeApiCache(data);
+            return data;
+          });
       });
   }
 
   function loadData() {
-    loadSnapshot().then(function (snap) {
-      if (snap && snap.profile && snap.profile.login) {
-        applyData(
-          {
-            publicRepos: snap.profile.publicRepos,
-            followers: snap.profile.followers,
-            following: snap.profile.following,
-            createdAt: snap.profile.createdAt,
-          },
-          snap.repos || [],
-          snap.totals,
-          { generatedAt: snap.generatedAt }
-        );
-        return;
-      }
-      // 快照缺失（例如首次部署还没跑 Actions）→ 退回实时 API
-      loadLive().then(function (live) {
-        if (!live) return;
+    loadLive().then(function (live) {
+      if (live && live.profile) {
         applyData(
           {
             publicRepos: live.profile.public_repos,
@@ -331,8 +349,29 @@
           },
           live.repos,
           null,
-          null
+          { live: true }
         );
+        return;
+      }
+      // API 不可用（限流 / 离线）→ 退回静态快照
+      loadSnapshot().then(function (snap) {
+        if (snap && snap.profile && snap.profile.login) {
+          applyData(
+            {
+              publicRepos: snap.profile.publicRepos,
+              followers: snap.profile.followers,
+              following: snap.profile.following,
+              createdAt: snap.profile.createdAt,
+            },
+            snap.repos || [],
+            snap.totals,
+            { generatedAt: snap.generatedAt }
+          );
+          return;
+        }
+        // 快照也没有 → 保留 HTML 内嵌的兜底值
+        var hint = $('#reposHint');
+        if (hint) hint.textContent = 'GitHub API 暂时不可用，显示的是内置快照数据。';
       });
     });
   }

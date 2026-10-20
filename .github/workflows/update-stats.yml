@@ -1,16 +1,11 @@
 name: Update site stats
 
-# 定时刷新 data/stats.json —— 页面读取这份静态快照，
-# 避免访客浏览器直连 GitHub API 时撞上匿名请求 60 次/小时的限额。
+# 手动刷新 data/stats.json —— 页面在 GitHub API 不可用时会退回这份快照。
+#
+# 不再定时执行：页面现在直接调用 GitHub API 拿实时数据，
+# 本工作流只是备用手段，需要时在 Actions 页面点 "Run workflow" 即可。
 on:
-  schedule:
-    - cron: '17 * * * *'
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/**'
-      - '.github/workflows/update-stats.yml'
 
 permissions:
   contents: write
@@ -46,5 +41,5 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/stats.json
-          git commit -m "chore: update site stats [skip ci]"
+          git commit -m "chore: update site stats"
           git push
