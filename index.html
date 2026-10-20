@@ -1,1 +1,385 @@
-1111
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ph4nt0mer · just do IT</title>
+<meta name="description" content="ph4nt0mer（rootphantomer）— 一个普通的打工人。写 Rust、TypeScript、Python，也折腾云原生和网络安全。">
+<meta name="author" content="ph4nt0mer">
+<meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="ph4nt0mer · just do IT">
+<meta property="og:description" content="一个普通的打工人。写 Rust、TypeScript、Python，也折腾云原生和网络安全。">
+<meta property="og:url" content="https://rootphantomer.github.io/">
+<meta property="og:image" content="https://github.com/rootphantomer.png?size=460">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="preconnect" href="https://api.github.com" crossorigin>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<!-- ============ 背景装饰 ============ -->
+<div class="bg-decor" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-orb bg-orb--a"></div>
+  <div class="bg-orb bg-orb--b"></div>
+</div>
+
+<!-- ============ 顶栏 ============ -->
+<header class="topbar" id="topbar">
+  <nav class="topbar__inner" aria-label="主导航">
+    <a class="brand" href="#top">
+      <span class="brand__mark" aria-hidden="true">/</span>
+      <span class="brand__text">ph4nt0mer</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" type="button"
+            aria-expanded="false" aria-controls="siteNav" aria-label="展开导航菜单">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <ul class="nav" id="siteNav">
+      <li><a href="#projects">项目</a></li>
+      <li><a href="#stack">技术栈</a></li>
+      <li><a href="#stats">数据</a></li>
+      <li><a href="#contact">联系</a></li>
+      <li>
+        <a class="nav__github" href="https://github.com/rootphantomer" target="_blank" rel="noopener noreferrer">
+          GitHub
+          <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        </a>
+      </li>
+      <li>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换明暗主题" title="切换明暗主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-13a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1Zm0 14a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1Zm8-7a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1Zm-14 0a1 1 0 0 1-1 1H4a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1Zm11.66-5.66a1 1 0 0 1 0 1.41l-.7.71a1 1 0 1 1-1.42-1.42l.71-.7a1 1 0 0 1 1.41 0Zm-9.2 9.2a1 1 0 0 1 0 1.41l-.7.71a1 1 0 1 1-1.42-1.42l.71-.71a1 1 0 0 1 1.41 0ZM19.07 4.93a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 1 1 1.42-1.42l.71.71a1 1 0 0 1 0 1.42ZM7.52 14.48a1 1 0 0 1 0 1.41l-.71.71a1 1 0 1 1-1.42-1.42l.71-.71a1 1 0 0 1 1.42 0Z"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21.64 13a1 1 0 0 0-1.05-.14 8.05 8.05 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.06 8.06 0 0 1 .25-2A1 1 0 0 0 4 2a1 1 0 0 0-.77 2.47 10.15 10.15 0 0 0 3.35 20.87 10.06 10.06 0 0 0 6.74-2.81 10 10 0 0 0 2.73-6.66 1 1 0 0 0-.41-.87Z"/></svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- ============ Hero ============ -->
+  <section class="hero" id="top">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <p class="hero__eyebrow">
+          <span class="pulse" aria-hidden="true"></span>
+          just do IT
+        </p>
+        <h1 class="hero__title">
+          <span class="hero__hi">Hi, I'm</span>
+          <span class="hero__name">ph4nt0mer</span>
+        </h1>
+        <p class="hero__subtitle">
+          一个普通的打工人 —— 写 <em>Rust</em>、<em>TypeScript</em>、<em>Python</em>，
+          也折腾云原生、网络安全和一堆自己用得上的小工具。
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="https://github.com/rootphantomer" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 16 16" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            查看 GitHub
+          </a>
+          <a class="btn btn--ghost" href="#projects">浏览项目</a>
+        </div>
+
+        <dl class="hero__stats" id="heroStats">
+          <div class="stat">
+            <dt>公开仓库</dt>
+            <dd data-stat="repos">29</dd>
+          </div>
+          <div class="stat">
+            <dt>Followers</dt>
+            <dd data-stat="followers">833</dd>
+          </div>
+          <div class="stat">
+            <dt>Following</dt>
+            <dd data-stat="following">26</dd>
+          </div>
+          <div class="stat">
+            <dt>加入 GitHub</dt>
+            <dd data-stat="since">2014</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero__visual" aria-hidden="true">
+        <div class="avatar-frame">
+          <div class="avatar-frame__glow"></div>
+          <img class="avatar" src="https://github.com/rootphantomer.png?size=460" alt="" width="230" height="230" loading="eager" decoding="async">
+        </div>
+        <div class="float-card float-card--1"><span class="float-card__dot"></span>Rust · Cloudflare Workers</div>
+        <div class="float-card float-card--2"><span class="float-card__dot float-card__dot--alt"></span>Security &amp; Networking</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 精选项目 ============ -->
+  <section class="section" id="projects">
+    <div class="section__head">
+      <p class="section__kicker">Featured</p>
+      <h2 class="section__title">精选项目</h2>
+      <p class="section__desc">一些还在持续维护、并且真的有人在用的东西。</p>
+    </div>
+
+    <div class="cards">
+      <!-- nodewarden -->
+      <article class="card card--wide reveal">
+        <div class="card__head">
+          <h3 class="card__title">
+            <a href="https://github.com/rootphantomer/nodewarden" target="_blank" rel="noopener noreferrer">nodewarden</a>
+          </h3>
+          <span class="tag tag--lang">TypeScript</span>
+        </div>
+        <p class="card__desc">Bitwarden 协议兼容的密码管理服务端，跑在 Cloudflare Workers 上。自建、零运维，支持 Web 端与移动端接入。</p>
+        <div class="card__meta">
+          <span class="card__stat" data-repo="nodewarden"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg><span>—</span></span>
+          <a class="card__link" href="https://nodewarden.app" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm6-3a.5.5 0 0 1 .5.5v4.19l2.72 1.57a.5.5 0 1 1-.5.87L7.5 9.6a.5.5 0 0 1-.25-.43V5.5a.5.5 0 0 1 .5-.5Z"/></svg>
+            在线体验
+          </a>
+        </div>
+      </article>
+
+      <!-- quake_rs -->
+      <article class="card card--wide reveal">
+        <div class="card__head">
+          <h3 class="card__title">
+            <a href="https://github.com/rootphantomer/quake_rs" target="_blank" rel="noopener noreferrer">quake_rs</a>
+          </h3>
+          <span class="tag tag--lang">Rust</span>
+        </div>
+        <p class="card__desc">重写优化的 Quake 命令行应用。内存占用更低、并发更快，把资产测绘这件事做得更顺手一点。</p>
+        <div class="card__meta">
+          <span class="card__stat" data-repo="quake_rs"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg><span>—</span></span>
+          <a class="card__link" href="https://quake.360.cn" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm6-3a.5.5 0 0 1 .5.5v4.19l2.72 1.57a.5.5 0 1 1-.5.87L7.5 9.6a.5.5 0 0 1-.25-.43V5.5a.5.5 0 0 1 .5-.5Z"/></svg>
+            项目主页
+          </a>
+        </div>
+      </article>
+
+      <!-- DiPlay -->
+      <article class="card reveal">
+        <div class="card__head">
+          <h3 class="card__title">
+            <a href="https://github.com/rootphantomer/DiPlay" target="_blank" rel="noopener noreferrer">DiPlay</a>
+          </h3>
+          <span class="tag tag--lang">Kotlin</span>
+        </div>
+        <p class="card__desc">面向兼容 Android 车机的独立 CarPlay 接收端，有线 / 无线双通道，已开放公测。</p>
+        <div class="card__meta">
+          <span class="card__stat" data-repo="DiPlay"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg><span>—</span></span>
+        </div>
+      </article>
+
+      <!-- baihu_web -->
+      <article class="card reveal">
+        <div class="card__head">
+          <h3 class="card__title">
+            <a href="https://github.com/rootphantomer/baihu_web" target="_blank" rel="noopener noreferrer">baihu_web</a>
+          </h3>
+          <span class="tag tag--lang">Vue</span>
+        </div>
+        <p class="card__desc">杭州白鹄动画有限公司官网前端，Vue 3 + Vite 构建，配套多端自适应布局。</p>
+        <div class="card__meta">
+          <span class="card__stat" data-repo="baihu_web"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg><span>—</span></span>
+          <a class="card__link" href="https://www.baihu-animation.com" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm6-3a.5.5 0 0 1 .5.5v4.19l2.72 1.57a.5.5 0 1 1-.5.87L7.5 9.6a.5.5 0 0 1-.25-.43V5.5a.5.5 0 0 1 .5-.5Z"/></svg>
+            访问官网
+          </a>
+        </div>
+      </article>
+
+      <!-- agentctl -->
+      <article class="card reveal">
+        <div class="card__head">
+          <h3 class="card__title">
+            <a href="https://github.com/rootphantomer/agentctl" target="_blank" rel="noopener noreferrer">agentctl</a>
+          </h3>
+          <span class="tag tag--lang">Rust</span>
+        </div>
+        <p class="card__desc">检测与管理正在运行的 Agent Gateway 进程的命令行小工具。</p>
+        <div class="card__meta">
+          <span class="card__stat" data-repo="agentctl"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg><span>—</span></span>
+        </div>
+      </article>
+
+      <!-- Oopz_dmg -->
+      <article class="card reveal">
+        <div class="card__head">
+          <h3 class="card__title">
+            <a href="https://github.com/rootphantomer/Oopz_dmg" target="_blank" rel="noopener noreferrer">Oopz_dmg</a>
+          </h3>
+          <span class="tag tag--lang">JavaScript</span>
+        </div>
+        <p class="card__desc">把 web.oopz.cn 封装成 macOS 原生桌面应用的尝试。</p>
+        <div class="card__meta">
+          <span class="card__stat" data-repo="Oopz_dmg"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg><span>—</span></span>
+        </div>
+      </article>
+    </div>
+
+    <!-- 全部仓库 -->
+    <div class="repos" id="repos">
+      <div class="repos__head">
+        <h3 class="repos__title">更多仓库</h3>
+        <p class="repos__hint" id="reposHint">从 GitHub 实时拉取，失败时展示快照数据。</p>
+      </div>
+      <ul class="repos__list" id="reposList">
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/Blasting_dictionary" target="_blank" rel="noopener noreferrer">Blasting_dictionary</a><span class="repos__desc">爆破字典</span><span class="repos__lang">Python</span><span class="repos__stars">★ 5302</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/Front-end-tutorial" target="_blank" rel="noopener noreferrer">Front-end-tutorial<span class="repos__fork">fork</span></a><span class="repos__desc">:panda_face:最全的资源教程-前端涉及的所有知识体系</span><span class="repos__lang">PHP</span><span class="repos__stars">★ 33</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/Web-Security-Learning" target="_blank" rel="noopener noreferrer">Web-Security-Learning<span class="repos__fork">fork</span></a><span class="repos__desc">Web-Security-Learning</span><span class="repos__lang">HTML</span><span class="repos__stars">★ 3</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/ysoserial" target="_blank" rel="noopener noreferrer">ysoserial<span class="repos__fork">fork</span></a><span class="repos__desc">A proof-of-concept tool for generating payloads that exploit unsafe Java object deserialization.</span><span class="repos__lang">Java</span><span class="repos__stars">★ 2</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/BytecodeScreen" target="_blank" rel="noopener noreferrer">BytecodeScreen<span class="repos__fork">fork</span></a><span class="repos__desc">—</span><span class="repos__lang">Java</span><span class="repos__stars">★ 1</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/Unix-Privilege-Escalation-Exploits-Pack" target="_blank" rel="noopener noreferrer">Unix-Privilege-Escalation-Exploits-Pack<span class="repos__fork">fork</span></a><span class="repos__desc">Exploits for getting local root on Linux, BSD, AIX, HP-UX, Solaris, RHEL, SUSE etc.</span><span class="repos__lang">C</span><span class="repos__stars">★ 1</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/ctf-tools" target="_blank" rel="noopener noreferrer">ctf-tools<span class="repos__fork">fork</span></a><span class="repos__desc">Some setup scripts for security research tools.</span><span class="repos__lang">Shell</span><span class="repos__stars">★ 1</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/lucky" target="_blank" rel="noopener noreferrer">lucky<span class="repos__fork">fork</span></a><span class="repos__desc">软硬路由公网神器,多平台,ipv6/ipv4 端口转发,反向代理,动态域名,语音助手网络唤醒,ipv4内网穿透,计划任务,自动证书</span><span class="repos__lang">—</span><span class="repos__stars">★ 1</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/jd_AutoComment" target="_blank" rel="noopener noreferrer">jd_AutoComment<span class="repos__fork">fork</span></a><span class="repos__desc">自动评价,仅供交流学习之用</span><span class="repos__lang">Python</span><span class="repos__stars">★ 0</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/ComfyUI-See-through" target="_blank" rel="noopener noreferrer">ComfyUI-See-through<span class="repos__fork">fork</span></a><span class="repos__desc">A ComfyUI plugin that wraps [See-through](https://github.com/shitagaki-lab/see-through) — an AI system that decomposes a single anime illustration into manipulatable 2.5D layer-decomposed models with depth ordering, ready for Live2D workflows.</span><span class="repos__lang">Jupyter Notebook</span><span class="repos__stars">★ 0</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/efinance" target="_blank" rel="noopener noreferrer">efinance<span class="repos__fork">fork</span></a><span class="repos__desc">efinance 是一个可以快速获取基金、股票、债券、期货数据的 Python 库，回测以及量化交易的好帮手！🚀🚀🚀</span><span class="repos__lang">Python</span><span class="repos__stars">★ 0</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/nuclei" target="_blank" rel="noopener noreferrer">nuclei<span class="repos__fork">fork</span></a><span class="repos__desc">Fast and customizable vulnerability scanner based on simple YAML based DSL.</span><span class="repos__lang">—</span><span class="repos__stars">★ 0</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/NacosRce" target="_blank" rel="noopener noreferrer">NacosRce<span class="repos__fork">fork</span></a><span class="repos__desc">Nacos JRaft Hessian 反序列化 RCE 加载字节码 注入内存马 不出网利用</span><span class="repos__lang">—</span><span class="repos__stars">★ 0</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/sharesbar" target="_blank" rel="noopener noreferrer">sharesbar<span class="repos__fork">fork</span></a><span class="repos__desc">MAC端看盘工具，自选股，股票，盯盘</span><span class="repos__lang">—</span><span class="repos__stars">★ 0</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/FridaTest" target="_blank" rel="noopener noreferrer">FridaTest</a><span class="repos__desc">FridaTest</span><span class="repos__lang">JavaScript</span><span class="repos__stars">★ 0</span></li>
+        <li class="repos__item"><a class="repos__name" href="https://github.com/rootphantomer/jd_sign_bot" target="_blank" rel="noopener noreferrer">jd_sign_bot<span class="repos__fork">fork</span></a><span class="repos__desc">京东签到机器人</span><span class="repos__lang">—</span><span class="repos__stars">★ 0</span></li>
+      </ul>
+      <p class="repos__more">
+        <a class="btn btn--ghost btn--sm" href="https://github.com/rootphantomer?tab=repositories" target="_blank" rel="noopener noreferrer">
+          在 GitHub 上查看全部
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 9 3 9a.75.75 0 0 1 0-1.5h6.94L6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 技术栈 ============ -->
+  <section class="section" id="stack">
+    <div class="section__head">
+      <p class="section__kicker">Toolbox</p>
+      <h2 class="section__title">技术栈</h2>
+      <p class="section__desc">日常在敲的东西，想到什么就写什么。</p>
+    </div>
+
+    <div class="stack">
+      <div class="stack__col reveal">
+        <h3 class="stack__title">语言</h3>
+        <ul class="chips">
+          <li class="chip">Rust</li>
+          <li class="chip">TypeScript</li>
+          <li class="chip">JavaScript</li>
+          <li class="chip">Python</li>
+          <li class="chip">Go</li>
+          <li class="chip">Java / Kotlin</li>
+          <li class="chip">PHP</li>
+          <li class="chip">C</li>
+          <li class="chip">Shell</li>
+        </ul>
+      </div>
+      <div class="stack__col reveal">
+        <h3 class="stack__title">前端</h3>
+        <ul class="chips">
+          <li class="chip">Vue 3</li>
+          <li class="chip">Vite</li>
+          <li class="chip">React</li>
+          <li class="chip">HTML / CSS</li>
+          <li class="chip">Tailwind CSS</li>
+          <li class="chip">Electron</li>
+          <li class="chip">ComfyUI</li>
+        </ul>
+      </div>
+      <div class="stack__col reveal">
+        <h3 class="stack__title">后端 / 云</h3>
+        <ul class="chips">
+          <li class="chip">Cloudflare Workers</li>
+          <li class="chip">Durable Objects</li>
+          <li class="chip">D1 / KV / R2</li>
+          <li class="chip">Node.js</li>
+          <li class="chip">Python</li>
+          <li class="chip">Nginx</li>
+          <li class="chip">Docker</li>
+        </ul>
+      </div>
+      <div class="stack__col reveal">
+        <h3 class="stack__title">安全 / 网络</h3>
+        <ul class="chips">
+          <li class="chip">渗透测试</li>
+          <li class="chip">Web 安全</li>
+          <li class="chip">资产测绘</li>
+          <li class="chip">CTF</li>
+          <li class="chip">Frida</li>
+          <li class="chip">内网穿透</li>
+          <li class="chip">Wireshark</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 数据 ============ -->
+  <section class="section" id="stats">
+    <div class="section__head">
+      <p class="section__kicker">Numbers</p>
+      <h2 class="section__title">一些数字</h2>
+      <p class="section__desc">数据由 GitHub Actions 每小时抓取生成，加载失败时自动回退到内置快照。</p>
+    </div>
+
+    <div class="metrics">
+      <div class="metric reveal">
+        <p class="metric__value" data-stat="publicRepos">29</p>
+        <p class="metric__label">公开仓库</p>
+      </div>
+      <div class="metric reveal">
+        <p class="metric__value" data-stat="followers">833</p>
+        <p class="metric__label">Followers</p>
+      </div>
+      <div class="metric reveal">
+        <p class="metric__value" data-stat="stars">5,344</p>
+        <p class="metric__label">Star 总数</p>
+      </div>
+      <div class="metric reveal">
+        <p class="metric__value" data-stat="since">2014</p>
+        <p class="metric__label">加入 GitHub</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 联系 ============ -->
+  <section class="section section--contact" id="contact">
+    <div class="contact reveal">
+      <h2 class="contact__title">保持联系</h2>
+      <p class="contact__desc">
+        遇到有趣的问题、想吐槽某个项目的实现，或者只是想打个招呼 —— 都很欢迎。
+      </p>
+      <div class="contact__links">
+        <a class="btn btn--primary" href="https://github.com/rootphantomer" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn btn--ghost" href="https://github.com/rootphantomer?tab=followers" target="_blank" rel="noopener noreferrer">关注的人</a>
+        <a class="btn btn--ghost" href="https://github.com/rootphantomer?tab=stars" target="_blank" rel="noopener noreferrer">Star 的项目</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p class="footer__text">
+      Built by <a href="https://github.com/rootphantomer" target="_blank" rel="noopener noreferrer">ph4nt0mer</a>
+      · 部署在 GitHub Pages
+    </p>
+    <p class="footer__text footer__text--dim">
+      <span id="footerYear">2026</span> · just do IT
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+name: Update site stats
+
+# 定时刷新 data/stats.json —— 页面读取这份静态快照，
+# 避免访客浏览器直连 GitHub API 时撞上匿名请求 60 次/小时的限额。
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/update-stats.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-site-stats
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch GitHub stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: rootphantomer
+        run: node scripts/update-stats.mjs
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data/stats.json; then
+            echo "数据无变化，跳过提交。"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/stats.json
+          git commit -m "chore: update site stats [skip ci]"
+          git push
